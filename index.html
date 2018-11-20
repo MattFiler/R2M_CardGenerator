@@ -6,6 +6,27 @@
                 display:none;
             }
             
+            @font-face {
+                font-family: 'Isolation';
+                src: url('fonts/Isolation.eot');
+                src: url('fonts/Isolation.eot?#iefix') format('embedded-opentype'),
+                    url('fonts/Isolation.woff') format('woff'),
+                    url('fonts/Isolation.ttf') format('truetype'),
+                    url('fonts/Isolation.svg#Isolation') format('svg');
+                font-weight: normal;
+                font-style: italic;
+            }
+            @font-face {
+                font-family: 'Jixellation';
+                src: url('fonts/Jixellation.eot');
+                src: url('fonts/Jixellation.eot?#iefix') format('embedded-opentype'),
+                    url('fonts/Jixellation.woff') format('woff'),
+                    url('fonts/Jixellation.ttf') format('truetype'),
+                    url('fonts/Jixellation.svg#Jixellation') format('svg');
+                font-weight: normal;
+                font-style: italic;
+            }
+            
             .cardBody{
                 height: 672px;
                 width: 480px;
@@ -14,6 +35,7 @@
                 position:absolute;
                 left: -480px;
                 top: -672px;
+                font-family: 'Isolation';
             }
             .cardClassIcon {
                 position: absolute;
@@ -22,8 +44,8 @@
             }
             textarea {
                 position: absolute;
-                width: 450px;
-                left: 15px;
+                width: 418px;
+                left: 33px;
                 background: transparent;
                 border: none;
                 resize: none;
@@ -52,6 +74,7 @@
                 font-weight: bold;
                 font-size: 32px;
                 width: 60px !important;
+                font-family: 'Jixellation';
             }
         </style>
     </head>
@@ -61,7 +84,7 @@
             <img src="" height="200px" class="cardClassIcon">
             <textarea class="renderedCardTitle"></textarea>
             <textarea class="renderedCardDescription"></textarea>
-            <img src="icons/action_points.png" width="70px" class="apIcon">
+            <img src="" width="70px" class="apIcon">
             <textarea class="renderedCardPoints"></textarea>
         </div>
         
@@ -69,13 +92,14 @@
         <div class="container">
             <div class="col-md-12">
                 <br>
-                <h2>Race To Space Issue Card Generator</h2>
+                <h1>Race To Space Card Generators</h1>
                 <br>
+                <h3>Issue Card</h3>
                 <form>
                     <!-- Class -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="classType">Class Type</label>
+                            <label class="input-group-text" for="classType">Class</label>
                         </div>
                         <select class="custom-select" id="classType">
                             <option>GLOBAL</option>
@@ -88,45 +112,58 @@
                     <!-- Title -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="classType">Card Title</label>
+                            <label class="input-group-text" for="cardTitle">Title</label>
                         </div>
-                        <input type="text" name="cardTitle" class="cardTitle form-control">
+                        <input type="text" id="cardTitle" class="cardTitle form-control">
                     </div>
                     <!-- Desc -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="cardDesc">Card Description</label>
+                            <label class="input-group-text" for="cardDesc">Description</label>
                         </div>
-                        <input type="text" name="cardDesc" class="cardDesc form-control">
+                        <input type="text" id="cardDesc" class="cardDesc form-control">
                     </div>
                     <!-- Title -->
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <label class="input-group-text" for="cardPoints">Card Points</label>
+                            <label class="input-group-text" for="cardPoints">Points</label>
                         </div>
-                        <input type="number" name="cardPoints" class="cardPoints form-control">
+                        <input type="number" id="cardPoints" class="cardPoints form-control">
                     </div>
                 </form>
                 <button class="renderCard btn btn-primary">DOWNLOAD</button>
             </div>
         </div>
         
-        <a class="downloadLink" download="test.jpg" href=""></a>
+        <a class="downloadLink" download="" href=""></a>
         
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="html2canvas.js"></script>
         <script>
             $(".renderCard").click(function() {
-                $(".cardClassIcon").attr("src", "icons/"+document.getElementById("classType").selectedIndex+".png");
+                var dropdown = document.getElementById("classType");
+                
+                $(".cardBody").css("background", "url('backgrounds/issue_"+dropdown.selectedIndex+".jpg')");
+                
+                $(".cardClassIcon").attr("src", "icons/"+dropdown.selectedIndex+".png");
                 $(".renderedCardTitle").val($(".cardTitle").val());
                 $(".renderedCardDescription").val($(".cardDesc").val());
-                $(".renderedCardPoints").val($(".cardPoints").val());
+                if ($(".cardPoints").val() != "0" && $(".cardPoints").val() != "") {
+                    $(".renderedCardPoints").val($(".cardPoints").val());
+                }
+                
+                if ($(".cardPoints").val() >= 5 && $(".cardPoints").val() < 10) {
+                    $(".apIcon").attr("src", "icons/action_points_low.png");
+                } else if ($(".cardPoints").val() >= 10 && $(".cardPoints").val() < 15) {
+                    $(".apIcon").attr("src", "icons/action_points_mid.png");
+                } else if ($(".cardPoints").val() >= 15) {
+                    $(".apIcon").attr("src", "icons/action_points_high.png");
+                }
                 
                 html2canvas(document.querySelector(".cardBody")).then(function(canvas) {
-                    //document.body.appendChild(canvas);
                     var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
                     $(".downloadLink").attr("href", image); 
-                    $(".downloadLink").attr("download", "test.png"); 
+                    $(".downloadLink").attr("download", dropdown.options[dropdown.selectedIndex].text+" - "+$(".cardTitle").val()+".png"); 
                     $(".downloadLink")[0].click();
                     
                     $(".cardTitle").val("");
