@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <style>
+            .downloadLink {
+                display:none;
+            }
+            
+            .cardBody{
+                height: 672px;
+                width: 480px;
+                background: black;
+                color: white;
+                position:absolute;
+                left: -480px;
+                top: -672px;
+            }
+            .cardClassIcon {
+                position: absolute;
+                left: 136px;
+                top: 50px;
+            }
+            textarea {
+                position: absolute;
+                width: 450px;
+                left: 15px;
+                background: transparent;
+                border: none;
+                resize: none;
+                color: white;
+                text-align: center;
+                overflow: hidden;
+            }
+            .renderedCardTitle {
+                font-weight: bold;
+                font-size: 35px;
+                top: 290px;
+            }
+            .renderedCardDescription {
+                font-weight: normal;
+                font-size: 23px;
+                top: 405px;
+            }
+            .apIcon {
+                position: absolute;
+                left: 207px;
+                top: 537px;
+            }
+            .renderedCardPoints {
+                left: 210px !important;
+                top: 543px !important;
+                font-weight: bold;
+                font-size: 32px;
+                width: 60px !important;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Card -->
+        <div class="cardBody">
+            <img src="" height="200px" class="cardClassIcon">
+            <textarea class="renderedCardTitle"></textarea>
+            <textarea class="renderedCardDescription"></textarea>
+            <img src="icons/action_points.png" width="70px" class="apIcon">
+            <textarea class="renderedCardPoints"></textarea>
+        </div>
+        
+        <!-- Input -->
+        <div class="container">
+            <div class="col-md-12">
+                <br>
+                <h2>Race To Space Issue Card Generator</h2>
+                <br>
+                <form>
+                    <!-- Class -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="classType">Class Type</label>
+                        </div>
+                        <select class="custom-select" id="classType">
+                            <option>GLOBAL</option>
+                            <option>MEDIC</option>
+                            <option>ENGINEER</option>
+                            <option>PILOT</option>
+                            <option>COMMUNICATIONS</option>
+                        </select>
+                    </div>
+                    <!-- Title -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="classType">Card Title</label>
+                        </div>
+                        <input type="text" name="cardTitle" class="cardTitle form-control">
+                    </div>
+                    <!-- Desc -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="cardDesc">Card Description</label>
+                        </div>
+                        <input type="text" name="cardDesc" class="cardDesc form-control">
+                    </div>
+                    <!-- Title -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="cardPoints">Card Points</label>
+                        </div>
+                        <input type="number" name="cardPoints" class="cardPoints form-control">
+                    </div>
+                </form>
+                <button class="renderCard btn btn-primary">DOWNLOAD</button>
+            </div>
+        </div>
+        
+        <a class="downloadLink" download="test.jpg" href=""></a>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="html2canvas.js"></script>
+        <script>
+            $(".renderCard").click(function() {
+                $(".cardClassIcon").attr("src", "icons/"+document.getElementById("classType").selectedIndex+".png");
+                $(".renderedCardTitle").val($(".cardTitle").val());
+                $(".renderedCardDescription").val($(".cardDesc").val());
+                $(".renderedCardPoints").val($(".cardPoints").val());
+                
+                html2canvas(document.querySelector(".cardBody")).then(function(canvas) {
+                    //document.body.appendChild(canvas);
+                    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+                    $(".downloadLink").attr("href", image); 
+                    $(".downloadLink").attr("download", "test.png"); 
+                    $(".downloadLink")[0].click();
+                    
+                    $(".cardTitle").val("");
+                    $(".cardDesc").val("");
+                    $(".cardPoints").val("");
+                });
+            });
+        </script>
+    </body>
+</html>
