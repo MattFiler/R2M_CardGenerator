@@ -99,11 +99,16 @@
             .itemCardBody {
                 left: -1440px;
             }
+            .itemCardTitle {
+                font-size: 50px;
+                top: 338px;
+                height: 132px;
+            }
             .itemCardAP {
                 position: absolute;
-                top: 500px;
-                left: 41px;
-                font-size: 50px;
+                top: 555px;
+                left: 114px;
+                font-size: 33px;
                 color: #6df7ec;
             }
         </style>
@@ -161,19 +166,19 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="input_issueCardTitle">Title</label>
                     </div>
-                    <input type="text" id="input_issueCardTitle" class="input_issueCardTitle form-control">
+                    <input type="text" id="input_issueCardTitle" maxlength="22" class="input_issueCardTitle form-control">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="input_issueCardDescription">Description</label>
                     </div>
-                    <input type="text" id="input_issueCardDescription" class="input_issueCardDescription form-control">
+                    <input type="text" id="input_issueCardDescription" maxlength="100" class="input_issueCardDescription form-control">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="input_issueCardAP">Points</label>
                     </div>
-                    <input type="number" id="input_issueCardAP" class="input_issueCardAP form-control">
+                    <input type="number" id="input_issueCardAP" max="25" class="input_issueCardAP form-control">
                 </div>
                 <button class="render_issueCard btn btn-primary">DOWNLOAD</button>
                 
@@ -188,19 +193,19 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="input_objectiveCardTitle">Title</label>
                     </div>
-                    <input type="text" id="input_objectiveCardTitle" class="input_objectiveCardTitle form-control">
+                    <input type="text" id="input_objectiveCardTitle" maxlength="22" class="input_objectiveCardTitle form-control">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="input_objectiveCardDescription">Description</label>
                     </div>
-                    <input type="text" id="input_objectiveCardDescription" class="input_objectiveCardDescription form-control">
+                    <input type="text" id="input_objectiveCardDescription" maxlength="100" class="input_objectiveCardDescription form-control">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="input_objectiveCardReward">Reward</label>
                     </div>
-                    <input type="text" id="input_objectiveCardReward" class="input_objectiveCardReward form-control">
+                    <input type="text" id="input_objectiveCardReward" maxlength="50" class="input_objectiveCardReward form-control">
                 </div>
                 <button class="render_objectiveCard btn btn-primary">DOWNLOAD</button>
                 
@@ -226,7 +231,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="input_itemCardName">Name</label>
                     </div>
-                    <input type="text" id="input_itemCardName" class="input_itemCardName form-control">
+                    <input type="text" id="input_itemCardName" maxlength="22" class="input_itemCardName form-control">
                 </div>
                 <button class="render_itemCard btn btn-primary">DOWNLOAD</button>
             </div>
