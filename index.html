@@ -2,7 +2,7 @@
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <style>
-            .downloadLink {
+            .download_issueCard {
                 display:none;
             }
             
@@ -27,21 +27,7 @@
                 font-style: italic;
             }
             
-            .cardBody{
-                height: 672px;
-                width: 480px;
-                background: black;
-                color: white;
-                position:absolute;
-                left: -480px;
-                top: -672px;
-                font-family: 'Isolation';
-            }
-            .cardClassIcon {
-                position: absolute;
-                left: 136px;
-                top: 50px;
-            }
+            /* Global Card */
             textarea {
                 position: absolute;
                 width: 418px;
@@ -53,22 +39,43 @@
                 text-align: center;
                 overflow: hidden;
             }
-            .renderedCardTitle {
+            .cardRender {
+                height: 672px;
+                width: 480px;
+                background: black;
+                color: white;
+                position:absolute;
+                top: -672px;
+                font-family: 'Isolation';
+            }
+            .cardTopImage {
+                position: absolute;
+                left: 136px;
+                top: 50px;
+            }
+            .cardTitle {
                 font-weight: bold;
                 font-size: 35px;
                 top: 290px;
+                height: 53px;
             }
-            .renderedCardDescription {
+            .cardDescription {
                 font-weight: normal;
                 font-size: 23px;
-                top: 405px;
+                top: 380px;
+                height: 104px;
             }
-            .apIcon {
+            
+            /* Issue Card */
+            .issueCardBody {
+                left: -480px;
+            }
+            .issueCardAPIcon {
                 position: absolute;
                 left: 207px;
                 top: 537px;
             }
-            .renderedCardPoints {
+            .issueCardAP {
                 left: 210px !important;
                 top: 543px !important;
                 font-weight: bold;
@@ -76,99 +83,235 @@
                 width: 60px !important;
                 font-family: 'Jixellation';
             }
+            
+            /* Objective Card */
+            .objectiveCardBody {
+                left: -960px;
+            }
+            .objectiveCardReward {
+                position: absolute;
+                top: 524px;
+                font-size: 27px;
+                color: #6df7ec;
+            }
+            
+            /* Item Card */
+            .itemCardBody {
+                left: -1440px;
+            }
+            .itemCardAP {
+                position: absolute;
+                top: 500px;
+                left: 41px;
+                font-size: 50px;
+                color: #6df7ec;
+            }
         </style>
     </head>
     <body>
-        <!-- Card -->
-        <div class="cardBody">
-            <img src="" height="200px" class="cardClassIcon">
-            <textarea class="renderedCardTitle"></textarea>
-            <textarea class="renderedCardDescription"></textarea>
-            <img src="" width="70px" class="apIcon">
-            <textarea class="renderedCardPoints"></textarea>
+        <!-- Issue Card Render -->
+        <div class="issueCardBody cardRender">
+            <img src="" height="200px" class="issueCardClassIcon cardTopImage">
+            <textarea class="issueCardTitle cardTitle"></textarea>
+            <textarea class="issueCardDescription cardDescription"></textarea>
+            <img src="" width="70px" class="issueCardAPIcon">
+            <textarea class="issueCardAP"></textarea>
         </div>
         
-        <!-- Input -->
+        <!-- Objective Card Render -->
+        <div class="objectiveCardBody cardRender">
+            <img src="icons/objective.png" height="200px" class="objectiveCardLogo cardTopImage">
+            <textarea class="objectiveCardTitle cardTitle"></textarea>
+            <textarea class="objectiveCardDescription cardDescription"></textarea>
+            <textarea class="objectiveCardReward"></textarea>
+        </div>
+        
+        <!-- Item Card Render -->
+        <div class="itemCardBody cardRender">
+            <img src="" height="200px" class="itemCardClassIcon cardTopImage">
+            <textarea class="itemCardTitle cardTitle"></textarea>
+            <p class="itemCardAP">+5 Action Points</p>
+        </div>
+        
+        <!-- Input forms -->
         <div class="container">
             <div class="col-md-12">
                 <br>
                 <h1>Race To Space Card Generators</h1>
                 <br>
+                
+                <hr>
+                <br>
+                
+                <!-- Issue Card Input -->
                 <h3>Issue Card</h3>
-                <form>
-                    <!-- Class -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="classType">Class</label>
-                        </div>
-                        <select class="custom-select" id="classType">
-                            <option>GLOBAL</option>
-                            <option>MEDIC</option>
-                            <option>ENGINEER</option>
-                            <option>PILOT</option>
-                            <option>COMMUNICATIONS</option>
-                        </select>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="input_issueCardClass">Class</label>
                     </div>
-                    <!-- Title -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="cardTitle">Title</label>
-                        </div>
-                        <input type="text" id="cardTitle" class="cardTitle form-control">
+                    <select class="custom-select" id="input_issueCardClass">
+                        <option>Pilot</option>
+                        <option>Communications</option>
+                        <option>Engineer</option>
+                        <option>Medic</option>
+                        <option>Global</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="input_issueCardTitle">Title</label>
                     </div>
-                    <!-- Desc -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="cardDesc">Description</label>
-                        </div>
-                        <input type="text" id="cardDesc" class="cardDesc form-control">
+                    <input type="text" id="input_issueCardTitle" class="input_issueCardTitle form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="input_issueCardDescription">Description</label>
                     </div>
-                    <!-- Title -->
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="cardPoints">Points</label>
-                        </div>
-                        <input type="number" id="cardPoints" class="cardPoints form-control">
+                    <input type="text" id="input_issueCardDescription" class="input_issueCardDescription form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="input_issueCardAP">Points</label>
                     </div>
-                </form>
-                <button class="renderCard btn btn-primary">DOWNLOAD</button>
+                    <input type="number" id="input_issueCardAP" class="input_issueCardAP form-control">
+                </div>
+                <button class="render_issueCard btn btn-primary">DOWNLOAD</button>
+                
+                <br>
+                <br>
+                <hr>
+                <br>
+                
+                <!-- Objective Card Input -->
+                <h3>Objective Card</h3>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="input_objectiveCardTitle">Title</label>
+                    </div>
+                    <input type="text" id="input_objectiveCardTitle" class="input_objectiveCardTitle form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="input_objectiveCardDescription">Description</label>
+                    </div>
+                    <input type="text" id="input_objectiveCardDescription" class="input_objectiveCardDescription form-control">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="input_objectiveCardReward">Reward</label>
+                    </div>
+                    <input type="text" id="input_objectiveCardReward" class="input_objectiveCardReward form-control">
+                </div>
+                <button class="render_objectiveCard btn btn-primary">DOWNLOAD</button>
+                
+                <br>
+                <br>
+                <hr>
+                <br>
+                
+                <!-- Item Card Input -->
+                <h3>Item Card</h3>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="input_itemCardClass">Class</label>
+                    </div>
+                    <select class="custom-select" id="input_itemCardClass">
+                        <option>Pilot</option>
+                        <option>Communications</option>
+                        <option>Engineer</option>
+                        <option>Medic</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="input_itemCardName">Name</label>
+                    </div>
+                    <input type="text" id="input_itemCardName" class="input_itemCardName form-control">
+                </div>
+                <button class="render_itemCard btn btn-primary">DOWNLOAD</button>
             </div>
         </div>
         
-        <a class="downloadLink" download="" href=""></a>
+        <!-- Card Download Placeholders -->
+        <a class="download_issueCard" download="" href=""></a>
+        <a class="download_objectiveCard" download="" href=""></a>
+        <a class="download_itemCard" download="" href=""></a>
         
+        <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="html2canvas.js"></script>
         <script>
-            $(".renderCard").click(function() {
-                var dropdown = document.getElementById("classType");
+            /* Issue Card */
+            $(".render_issueCard").click(function() {
+                var dropdown = document.getElementById("input_issueCardClass");
                 
-                $(".cardBody").css("background", "url('backgrounds/issue_"+dropdown.selectedIndex+".jpg')");
+                $(".issueCardBody").css("background", "url('backgrounds/issue_"+dropdown.selectedIndex+".jpg')");
                 
-                $(".cardClassIcon").attr("src", "icons/"+dropdown.selectedIndex+".png");
-                $(".renderedCardTitle").val($(".cardTitle").val());
-                $(".renderedCardDescription").val($(".cardDesc").val());
-                if ($(".cardPoints").val() != "0" && $(".cardPoints").val() != "") {
-                    $(".renderedCardPoints").val($(".cardPoints").val());
+                $(".issueCardClassIcon").attr("src", "icons/"+dropdown.selectedIndex+".png");
+                $(".issueCardTitle").val($(".input_issueCardTitle").val());
+                $(".issueCardDescription").val($(".input_issueCardDescription").val());
+                if ($(".input_issueCardAP").val() != "0") {
+                    $(".issueCardAP").val($(".input_issueCardAP").val());
+                } else {
+                    $(".issueCardAP").val("");
                 }
                 
-                if ($(".cardPoints").val() >= 5 && $(".cardPoints").val() < 10) {
-                    $(".apIcon").attr("src", "icons/action_points_low.png");
-                } else if ($(".cardPoints").val() >= 10 && $(".cardPoints").val() < 15) {
-                    $(".apIcon").attr("src", "icons/action_points_mid.png");
-                } else if ($(".cardPoints").val() >= 15) {
-                    $(".apIcon").attr("src", "icons/action_points_high.png");
+                if ($(".input_issueCardAP").val() >= 5 && $(".input_issueCardAP").val() < 10) {
+                    $(".issueCardAPIcon").attr("src", "icons/action_points_low.png");
+                } else if ($(".input_issueCardAP").val() >= 10 && $(".input_issueCardAP").val() < 15) {
+                    $(".issueCardAPIcon").attr("src", "icons/action_points_mid.png");
+                } else if ($(".input_issueCardAP").val() >= 15) {
+                    $(".issueCardAPIcon").attr("src", "icons/action_points_high.png");
                 }
                 
-                html2canvas(document.querySelector(".cardBody")).then(function(canvas) {
+                html2canvas(document.querySelector(".issueCardBody")).then(function(canvas) {
                     var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
-                    $(".downloadLink").attr("href", image); 
-                    $(".downloadLink").attr("download", dropdown.options[dropdown.selectedIndex].text+" - "+$(".cardTitle").val()+".png"); 
-                    $(".downloadLink")[0].click();
+                    $(".download_issueCard").attr("href", image); 
+                    $(".download_issueCard").attr("download", dropdown.options[dropdown.selectedIndex].text+" issue - "+$(".input_issueCardTitle").val()+".png"); 
+                    $(".download_issueCard")[0].click();
                     
-                    $(".cardTitle").val("");
-                    $(".cardDesc").val("");
-                    $(".cardPoints").val("");
+                    $(".input_issueCardTitle").val("");
+                    $(".input_issueCardDescription").val("");
+                    $(".input_issueCardAP").val("");
+                });
+            });
+            
+            /* Objective Card */
+            $(".render_objectiveCard").click(function() {
+                $(".objectiveCardBody").css("background", "url('backgrounds/objective.jpg')");
+                
+                $(".objectiveCardTitle").val($(".input_objectiveCardTitle").val());
+                $(".objectiveCardDescription").val($(".input_objectiveCardDescription").val());
+                $(".objectiveCardReward").val($(".input_objectiveCardReward").val());
+                
+                html2canvas(document.querySelector(".objectiveCardBody")).then(function(canvas) {
+                    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+                    $(".download_objectiveCard").attr("href", image); 
+                    $(".download_objectiveCard").attr("download", "Objective - "+$(".input_objectiveCardTitle").val()+".png"); 
+                    $(".download_objectiveCard")[0].click();
+                    
+                    $(".input_objectiveCardTitle").val("");
+                    $(".input_objectiveCardDescription").val("");
+                    $(".input_objectiveCardReward").val("");
+                });
+            });
+            
+            /* Item Card */
+            $(".render_itemCard").click(function() {
+                var dropdown = document.getElementById("input_itemCardClass");
+                
+                $(".itemCardBody").css("background", "url('backgrounds/objective.jpg')");
+                
+                $(".itemCardClassIcon").attr("src", "icons/"+dropdown.selectedIndex+".png");
+                $(".itemCardTitle").val($(".input_itemCardName").val());
+                
+                html2canvas(document.querySelector(".itemCardBody")).then(function(canvas) {
+                    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+                    $(".download_itemCard").attr("href", image); 
+                    $(".download_itemCard").attr("download", dropdown.options[dropdown.selectedIndex].text+" item - "+$(".input_itemCardName").val()+".png"); 
+                    $(".download_itemCard")[0].click();
+                    
+                    $(".input_itemCardName").val("");
                 });
             });
         </script>
