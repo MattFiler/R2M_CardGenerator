@@ -101,8 +101,8 @@
             }
             .itemCardTitle {
                 font-size: 50px;
-                top: 338px;
-                height: 132px;
+                top: 327px;
+                height: 140px;
             }
             .itemCardAP {
                 position: absolute;
@@ -231,7 +231,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="input_itemCardName">Name</label>
                     </div>
-                    <input type="text" id="input_itemCardName" maxlength="22" class="input_itemCardName form-control">
+                    <input type="text" id="input_itemCardName" maxlength="28" class="input_itemCardName form-control">
                 </div>
                 <button class="render_itemCard btn btn-primary">DOWNLOAD</button>
             </div>
@@ -305,7 +305,8 @@
             $(".render_itemCard").click(function() {
                 var dropdown = document.getElementById("input_itemCardClass");
                 
-                $(".itemCardBody").css("background", "url('backgrounds/objective.jpg')");
+                $(".itemCardBody").css("background", "url('backgrounds/issue_"+dropdown.selectedIndex+".jpg')");
+                /*$(".itemCardBody").css("background", "url('backgrounds/objective.jpg')");*/
                 
                 $(".itemCardClassIcon").attr("src", "icons/"+dropdown.selectedIndex+".png");
                 $(".itemCardTitle").val($(".input_itemCardName").val());
